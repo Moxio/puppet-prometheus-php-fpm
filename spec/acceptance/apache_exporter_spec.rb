@@ -16,11 +16,11 @@ describe 'prometheus apache exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
     describe process('apache_exporter') do
-      its(:args) { is_expected.to match %r{\ -scrape_uri http://localhost/server-status\?auto} }
+      its(:args) { is_expected.to match %r{\ --scrape_uri http://localhost/server-status\?auto} }
     end
   end
 
-  describe 'apache_exporter update from 0.5.0 to 0.7.0' do
+  describe 'apache_exporter update from 0.5.0 to 0.8.0' do
     it 'is idempotent' do
       pp = "class{'prometheus::apache_exporter': version => '0.5.0'}"
       apply_manifest(pp, catch_failures: true)
@@ -40,7 +40,7 @@ describe 'prometheus apache exporter' do
       it { is_expected.to be_listening.with('tcp6') }
     end
     it 'is idempotent' do
-      pp = "class{'prometheus::apache_exporter': version => '0.7.0'}"
+      pp = "class{'prometheus::apache_exporter': version => '0.8.0'}"
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end
@@ -51,7 +51,7 @@ describe 'prometheus apache exporter' do
     end
 
     describe process('apache_exporter') do
-      its(:args) { is_expected.to match %r{\ -scrape_uri http://localhost/server-status\?auto} }
+      its(:args) { is_expected.to match %r{\ --scrape_uri http://localhost/server-status\?auto} }
     end
 
     describe port(9117) do
