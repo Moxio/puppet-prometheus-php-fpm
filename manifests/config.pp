@@ -41,7 +41,7 @@ class prometheus::config {
       'web.enable-admin-api'                    => $prometheus::web_enable_admin_api,
       'web.page-title'                          => $prometheus::web_page_title,
       'web.cors.origin'                         => $prometheus::web_cors_origin,
-      'storage.tsdb.retention.size'             => $prometheus::storage_retention_size,
+      'storage.tsdb.retention.size'             => $prometheus::server::storage_retention_size,
       'storage.tsdb.no-lockfile'                => $prometheus::storage_no_lockfile,
       'storage.tsdb.allow-overlapping-blocks'   => $prometheus::storage_allow_overlapping_blocks,
       'storage.tsdb.wal-compression'            => $prometheus::storage_wal_compression,
@@ -80,7 +80,7 @@ class prometheus::config {
   if ($prometheus_v2 and $prometheus::log_level == 'fatal') {
     fail('fatal is no longer a valid value in prometheus v2')
   }
-  if versioncmp($prometheus::server::version, '2.7.0') < 0 and $prometheus::storage_retention_size {
+  if versioncmp($prometheus::server::version, '2.7.0') < 0 and $prometheus::server::storage_retention_size {
     fail('storage.tsdb.retention.size is only available starting in prometheus 2.7')
   }
 
@@ -106,7 +106,7 @@ class prometheus::config {
       'web.cors.origin'                          => $web_cors_origin,
       'storage.tsdb.path'                        => $prometheus::server::localstorage,
       "storage.tsdb.retention${rtntn_suffix}"    => $prometheus::server::storage_retention,
-      'storage.tsdb.retention.size'              => $prometheus::storage_retention_size,
+      'storage.tsdb.retention.size'              => $prometheus::server::storage_retention_size,
       'storage.tsdb.no-lockfile'                 => $prometheus::storage_no_lockfile,
       'storage.tsdb.allow-overlapping-blocks'    => $prometheus::storage_allow_overlapping_blocks,
       'storage.tsdb.wal-compression'             => $prometheus::storage_wal_compression,

@@ -26,6 +26,7 @@ class prometheus::server (
   Array $alert_relabel_config                                                   = $prometheus::alert_relabel_config,
   Array $alertmanagers_config                                                   = $prometheus::alertmanagers_config,
   String $storage_retention                                                     = $prometheus::storage_retention,
+  Optional[String[1]] $storage_retention_size                                   = $prometheus::storage_retention_size,
   Stdlib::Absolutepath $env_file_path                                           = $prometheus::env_file_path,
   Hash $extra_alerts                                                            = $prometheus::extra_alerts,
   Boolean $service_enable                                                       = $prometheus::service_enable,
