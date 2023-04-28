@@ -4,6 +4,97 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v12.5.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.5.0) (2023-01-30)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.4.0...v12.5.0)
+
+**Implemented enhancements:**
+
+- bump puppet/systemd to \< 5.0.0 [\#645](https://github.com/voxpupuli/puppet-prometheus/pull/645) ([jhoblitt](https://github.com/jhoblitt))
+- Adapt web.config.file option for node\_exporter versions higher than 1.5.0 [\#644](https://github.com/voxpupuli/puppet-prometheus/pull/644) ([Pigueiras](https://github.com/Pigueiras))
+- feat: Support JMX exporter [\#636](https://github.com/voxpupuli/puppet-prometheus/pull/636) ([dploeger](https://github.com/dploeger))
+- Support time\_intervals with alertmanager \>= 0.24.0 [\#618](https://github.com/voxpupuli/puppet-prometheus/pull/618) ([treydock](https://github.com/treydock))
+
+**Fixed bugs:**
+
+- Replace $facts\['service\_provider'\] by $prometheus::init\_style \(except init.pp\) [\#642](https://github.com/voxpupuli/puppet-prometheus/pull/642) ([phaedriel](https://github.com/phaedriel))
+
+**Closed issues:**
+
+- Support JMX exporter [\#635](https://github.com/voxpupuli/puppet-prometheus/issues/635)
+- Toplevel parameter init\_style ignored [\#629](https://github.com/voxpupuli/puppet-prometheus/issues/629)
+
+**Merged pull requests:**
+
+- Debian OS family: Install apt-transport-https during CI [\#628](https://github.com/voxpupuli/puppet-prometheus/pull/628) ([bastelfreak](https://github.com/bastelfreak))
+- prometheus: Move hiera data to class [\#624](https://github.com/voxpupuli/puppet-prometheus/pull/624) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v12.4.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.4.0) (2022-06-03)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.3.0...v12.4.0)
+
+**Implemented enhancements:**
+
+- Adding a Proxy option [\#186](https://github.com/voxpupuli/puppet-prometheus/issues/186)
+- Implement web-config.yml handling [\#622](https://github.com/voxpupuli/puppet-prometheus/pull/622) ([rwaffen](https://github.com/rwaffen))
+- Support new download format for openldap\_exporter [\#619](https://github.com/voxpupuli/puppet-prometheus/pull/619) ([treydock](https://github.com/treydock))
+- Add php-fpm exporter [\#605](https://github.com/voxpupuli/puppet-prometheus/pull/605) ([kubicgruenfeld](https://github.com/kubicgruenfeld))
+- Add Debian 11 support [\#601](https://github.com/voxpupuli/puppet-prometheus/pull/601) ([towo](https://github.com/towo))
+- Allow to set storage parameters to false [\#598](https://github.com/voxpupuli/puppet-prometheus/pull/598) ([kubicgruenfeld](https://github.com/kubicgruenfeld))
+- \(\#186\) Add proxy parameters [\#596](https://github.com/voxpupuli/puppet-prometheus/pull/596) ([ShaunMaxwell](https://github.com/ShaunMaxwell))
+
+**Fixed bugs:**
+
+- make process exporter service name propagate correctly [\#617](https://github.com/voxpupuli/puppet-prometheus/pull/617) ([anarcat](https://github.com/anarcat))
+
+**Closed issues:**
+
+- We should be able to download from custom url with credentials [\#603](https://github.com/voxpupuli/puppet-prometheus/issues/603)
+- Prometheus Agent mode not supported yet [\#597](https://github.com/voxpupuli/puppet-prometheus/issues/597)
+- Support for node exporter 1.x [\#520](https://github.com/voxpupuli/puppet-prometheus/issues/520)
+
+**Merged pull requests:**
+
+- Update ipmi\_exporter URL, project moved [\#620](https://github.com/voxpupuli/puppet-prometheus/pull/620) ([treydock](https://github.com/treydock))
+- extra\_options: Switch from String to Optional\[String\[1\]\] [\#610](https://github.com/voxpupuli/puppet-prometheus/pull/610) ([bastelfreak](https://github.com/bastelfreak))
+- Beaker: Install lsb-release during CI [\#609](https://github.com/voxpupuli/puppet-prometheus/pull/609) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v12.3.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.3.0) (2021-11-17)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.2.0...v12.3.0)
+
+**Implemented enhancements:**
+
+- Add a parameter to validate alertmanager config [\#593](https://github.com/voxpupuli/puppet-prometheus/pull/593) ([roidelapluie](https://github.com/roidelapluie))
+- Add sachet webhook receiver [\#590](https://github.com/voxpupuli/puppet-prometheus/pull/590) ([BDelacour](https://github.com/BDelacour))
+
+**Fixed bugs:**
+
+- fix download url for new asset url schema [\#591](https://github.com/voxpupuli/puppet-prometheus/pull/591) ([reini-1](https://github.com/reini-1))
+
+**Closed issues:**
+
+- Alertmanager configuration is not checked when installed from RPM [\#592](https://github.com/voxpupuli/puppet-prometheus/issues/592)
+- postgres\_exporter 0.10.0 cannot be downloaded [\#584](https://github.com/voxpupuli/puppet-prometheus/issues/584)
+- found multiple scrape configs with job name `x` [\#573](https://github.com/voxpupuli/puppet-prometheus/issues/573)
+
+**Merged pull requests:**
+
+- Update prometheus version from 2.20.1 to 2.30.3 [\#587](https://github.com/voxpupuli/puppet-prometheus/pull/587) ([saz](https://github.com/saz))
+- Run CI nightly [\#586](https://github.com/voxpupuli/puppet-prometheus/pull/586) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v12.2.0](https://github.com/voxpupuli/puppet-prometheus/tree/v12.2.0) (2021-10-04)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.1.1...v12.2.0)
+
+**Implemented enhancements:**
+
+- add nginx exporter [\#583](https://github.com/voxpupuli/puppet-prometheus/pull/583) ([kubicgruenfeld](https://github.com/kubicgruenfeld))
+
+**Fixed bugs:**
+
+- conflict with camptocamp-systemd latest  release 3.0.0 [\#560](https://github.com/voxpupuli/puppet-prometheus/issues/560)
+
 ## [v12.1.1](https://github.com/voxpupuli/puppet-prometheus/tree/v12.1.1) (2021-08-26)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-prometheus/compare/v12.1.0...v12.1.1)

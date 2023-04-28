@@ -216,19 +216,19 @@
 # @param config_show_diff
 #  Whether to show prometheus configuration file diff in the Puppet logs.
 # @param extra_groups Extra groups of which the user should be a part
+# @param proxy_server
+#  Optional proxy server, with port number if needed. ie: https://example.com:8080
+# @param proxy_type
+#  Optional proxy server type (none|http|https|ftp)
 class prometheus (
   String $user,
   String $group,
   Array $extra_groups,
-  Stdlib::Absolutepath $bin_dir,
   Stdlib::Absolutepath $shared_dir,
-  String $version,
-  String $install_method,
   Prometheus::Uri $download_url_base,
   String $download_extension,
   String $package_name,
   String $package_ensure,
-  String $service_name,
   String $config_dir,
   Stdlib::Absolutepath $localstorage,
   String $config_template,
@@ -243,12 +243,16 @@ class prometheus (
   Array $alertmanagers_config,
   String $storage_retention,
   Stdlib::Absolutepath $env_file_path,
-  Boolean $manage_prometheus_server,
-  Optional[String[1]] $extra_options,
-  Optional[String] $download_url,
-  Optional[String[1]] $extract_command,
   Boolean $manage_config,
-  Stdlib::Absolutepath $usershell,
+  Stdlib::Absolutepath $bin_dir                                                 = '/usr/local/bin',
+  String $version                                                               = '2.30.3',
+  String $install_method                                                        = 'url',
+  String $service_name                                                          = 'prometheus',
+  Boolean $manage_prometheus_server                                             = false,
+  Optional[String[1]] $extra_options                                            = undef,
+  Optional[String] $download_url                                                = undef,
+  Optional[String[1]] $extract_command                                          = undef,
+  Stdlib::Absolutepath $usershell                                               = '/usr/bin/nologin',
   Optional[String[1]] $web_listen_address                                       = undef,
   Optional[String[1]] $web_read_timeout                                         = undef,
   Optional[String[1]] $web_max_connections                                      = undef,
@@ -301,6 +305,8 @@ class prometheus (
   Boolean $manage_user                                                          = true,
   Boolean $config_show_diff                                                     = true,
   Boolean $include_default_scrape_configs                                       = true,
+  Optional[String[1]] $proxy_server                                             = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']] $proxy_type                    = undef,
 ) {
   case $arch {
     'x86_64', 'amd64': { $real_arch = 'amd64' }

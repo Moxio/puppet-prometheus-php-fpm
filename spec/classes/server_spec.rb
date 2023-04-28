@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'prometheus::server' do
@@ -19,7 +21,7 @@ describe 'prometheus::server' do
         it { is_expected.to contain_class('systemd') }
 
         it {
-          is_expected.to contain_systemd__unit_file('prometheus.service').with(
+          expect(subject).to contain_systemd__unit_file('prometheus.service').with(
             'content' => File.read(fixtures('files', "prometheus#{prom_major}.systemd"))
           )
         }
@@ -56,6 +58,38 @@ describe 'prometheus::server' do
             it {
               content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
               expect(content).to include('LimitNOFILE=1000000')
+            }
+          end
+        end
+
+        describe 'tsdb-disabled' do
+          context 'by default' do
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).to include('storage.tsdb.path')
+              expect(content).to include('storage.tsdb.retention')
+            }
+          end
+
+          context 'when retention set to false' do
+            let(:params) do
+              super().merge('storage_retention' => false)
+            end
+
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).not_to include('storage.tsdb.retention')
+            }
+          end
+
+          context 'when storage path set to false' do
+            let(:params) do
+              super().merge('localstorage' => false)
+            end
+
+            it {
+              content = catalogue.resource('systemd::unit_file', 'prometheus.service').send(:parameters)[:content]
+              expect(content).not_to include('storage.tsdb.path')
             }
           end
         end

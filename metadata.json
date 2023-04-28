@@ -1,6 +1,6 @@
 {
   "name": "puppet-prometheus",
-  "version": "12.1.2-rc0",
+  "version": "12.5.1-rc0",
   "author": "Vox Pupuli",
   "summary": "This module installs, configures and manages the Prometheus service.",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 1.1.1 < 4.0.0"
+      "version_requirement": ">= 1.1.1 < 5.0.0"
     },
     {
       "name": "puppet/archive",
@@ -37,6 +37,18 @@
       ]
     },
     {
+      "operatingsystem": "AlmaLinux",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Rocky",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
       "operatingsystem": "VirtuozzoLinux",
       "operatingsystemrelease": [
         "7"
@@ -46,7 +58,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "9",
-        "10"
+        "10",
+        "11"
       ]
     },
     {
